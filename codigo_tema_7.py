@@ -16,6 +16,12 @@ low_pass_kernel = np.array([
     [1, 2, 1]
 ]) / 16  # Filtro Gaussiano 3x3 normalizado
 
+edge_detector_kernel= np.array([
+    [1,2,1],
+    [0,0,0],
+    [-1,-2,-1]
+])
+
 # Filtro de Roberts
 roberts_kernel_x = np.array([
     [1, 0],
@@ -71,6 +77,7 @@ def seleccionar_filtro():
     print("1. Filtro Paso Bajo")
     print("2. Filtro Paso Alto")
     print("3. Filtro de Roberts")
+    print("4. Detector de Bordes")
     
     try:
         filtro_seleccionado = int(input("Elija el número del filtro que desea aplicar: "))
@@ -80,6 +87,8 @@ def seleccionar_filtro():
             return high_pass_kernel
         elif filtro_seleccionado == 3:
             return (roberts_kernel_x, roberts_kernel_y)
+        elif filtro_seleccionado == 4:
+            return edge_detector_kernel
         else:
             print("Número de filtro no válido.")
             return None
